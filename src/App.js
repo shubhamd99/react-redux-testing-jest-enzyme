@@ -32,7 +32,7 @@ class App extends React.Component {
     const { posts } = this.props;
     const post = posts.map((p, index) => {
       return (
-        <ListItem key={p.id} title={p.title} desc={p.body} />
+        <ListItem key={index} title={p.title} desc={p.body} />
       )
     })
 
@@ -42,7 +42,7 @@ class App extends React.Component {
     };
 
     return (
-      <div>
+      <div className="App" data-test="appComponent">
         <Header />
         <section className="main">
           <Headline header="Post" desc="Click the button to render" tempArr={tempArr}/>
