@@ -16,20 +16,41 @@ const tempArr = [
   }
 ];
 
+const initialState = {
+  hideBtn: false,
+}
+
 class App extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      ...initialState,
+    };
     this.fetch = this.fetch.bind(this);
   }
   
 
   fetch() {
     this.props.fetchPosts();
+    this.updateState();
+  }
+
+  updateState() {
+    const { hideBtn } = this.state;
+    this.setState({
+      hideBtn: !hideBtn
+    });
+  }
+
+  exampleMethod_returnsValue(number) {
+    return number + 1;
   }
   
   render() {
+    const { hideBtn } = this.state;
     const { posts } = this.props;
+
     const post = posts.map((p, index) => {
       return (
         <ListItem key={index} title={p.title} desc={p.body} />
@@ -45,8 +66,11 @@ class App extends React.Component {
       <div className="App" data-test="appComponent">
         <Header />
         <section className="main">
+          
           <Headline header="Post" desc="Click the button to render" tempArr={tempArr}/>
-          <SharedButton {...configButton} />
+          {!hideBtn && 
+            <SharedButton {...configButton} />
+          }
           {posts.length > 0 && 
           <div>
             {post}

@@ -42,4 +42,17 @@ describe('App Component', () => {
         expect(component.length).toBe(1);
     });
 
+    it('updateState() should update state as expected', () => {
+        const classInstance = wrapper.instance();
+        classInstance.updateState();
+        const newState = classInstance.state.hideBtn;
+        expect(newState).toBe(true);
+    });
+
+    it('exampleMethod_returnsValue(number) should return a value as expected', () => {
+        const classInstance = wrapper.instance();
+        const newValue = classInstance.exampleMethod_returnsValue(6);
+        expect(newValue).toBe(7);
+    });
+
 });
